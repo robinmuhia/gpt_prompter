@@ -5,7 +5,6 @@ import Provider from "components/Provider";
 
 interface Props {
   children?: ReactNode;
-  // any props that come into the component
 }
 export const metadata = {
   title: "Ai_prompter",
