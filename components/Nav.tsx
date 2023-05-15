@@ -2,25 +2,31 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useEffect, use } from "react";
+import { useState, useEffect } from "react";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 
 const Nav = () => {
-  interface Provide {
+  interface Provider {
     name: string;
     id: string;
   }
-  type Provider = Provide | null;
 
-  const isUserLoggedIn: boolean = true;
+  interface Provide {
+    providers: Provider;
+    setProviders: React.Dispatch<React.SetStateAction<Provider>>;
+  }
+
+  const { data: session } = useSession();
   const [toggleDropdown, setToggleDropdown] = useState<boolean>(false);
-  const [providers, setProviders] = useState<Provider>(null);
+  const [providers, setProviders] = useState<Provide | null>(null);
 
   useEffect(() => {
-    const setProviders = async () => {
+    const setUpProviders = async () => {
       const response = await getProviders();
-      // setProviders(response);
+      // @ts-ignore
+      setProviders(response);
     };
+    setUpProviders();
   }, []);
 
   return (
@@ -38,21 +44,21 @@ const Nav = () => {
       {/* 
         {Desktop Navigation} */}
       <div className="sm:flex hidden">
-        {isUserLoggedIn ? (
+        {session?.user ? (
           <div className="flex gap-3 md:gap-5">
             <Link href="/create-prompt" className="black_btn">
               Create Prompt
             </Link>
             <button
               type="submit"
-              onClick={() => signOut}
+              onClick={() => signOut()}
               className="outline_btn"
             >
               Sign Out
             </button>
             <Link href="/profile">
               <Image
-                src="/assets/images/logo.svg"
+                src={session?.user.image!}
                 alt="Profile"
                 width={37}
                 height={37}
@@ -63,23 +69,25 @@ const Nav = () => {
         ) : (
           <>
             {providers &&
-              Object.values(providers).map((provider: Provide) => (
+              Object.values(providers).map((provider: Provider) => (
                 <button
                   type="submit"
                   key={provider.name}
                   onClick={() => signIn(provider.id)}
                   className="black_btn"
-                ></button>
+                >
+                  Sign In
+                </button>
               ))}
           </>
         )}
       </div>
       {/* {Mobile navigation} */}
       <div className="sm:hidden flex relative">
-        {isUserLoggedIn ? (
+        {session?.user ? (
           <div className="flex">
             <Image
-              src="/assets/images/logo.svg"
+              src={session?.user.image!}
               alt="Profile"
               width={37}
               height={37}
@@ -118,13 +126,16 @@ const Nav = () => {
         ) : (
           <>
             {providers &&
-              Object.values(providers).map((provider: Provide) => (
+              Object.values(providers).map((provider: Provider) => (
                 <button
                   type="submit"
                   key={provider.name}
                   onClick={() => signIn(provider.id)}
                   className="black_btn"
-                ></button>
+                >
+                  {" "}
+                  Sign In
+                </button>
               ))}
           </>
         )}
