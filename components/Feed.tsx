@@ -7,6 +7,7 @@ interface creator {
   image: string;
   username: string;
   email: string;
+  _id: string;
 }
 
 interface post {
@@ -24,6 +25,7 @@ const PromptCardList = ({ data, handleTagClick }: props) => {
   return (
     <div className="mt-16 prompt_layout">
       {data.map((post: post) => (
+        //@ts-ignore
         <Promptcard
           key={post._id}
           post={post}
