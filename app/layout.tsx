@@ -7,8 +7,8 @@ interface Props {
   children?: ReactNode;
 }
 export const metadata = {
-  title: "Ai_prompter",
-  description: "Discover & Share Ai Prompts",
+  title: "Ayira_Affirmatioms",
+  description: "My daily affirmations to Ayira powered by chatGPT",
 };
 
 const RootLayout: FC<Props> = ({ children }) => {

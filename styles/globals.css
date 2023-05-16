@@ -65,9 +65,18 @@
   opacity: 0.15;
 }
 
+.emoji {
+  margin-left: 390px;
+  justify-content: center;
+  align-items: center;
+}
+
 @media screen and (max-width: 640px) {
   .main {
     padding: 0;
+  }
+  .emoji {
+    margin-left: 190px;
   }
 }
 

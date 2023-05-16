@@ -21,17 +21,11 @@ interface post {
 
 interface props {
   post: post;
-  handleTagClick: () => void;
   handleEdit: () => void;
   handleDelete: () => void;
 }
 
-const Promptcard = ({
-  post,
-  handleTagClick,
-  handleEdit,
-  handleDelete,
-}: props) => {
+const Promptcard = ({ post, handleEdit, handleDelete }: props) => {
   const pathName = usePathname();
   const { data: session } = useSession();
   const [copied, setCopied] = useState("");
@@ -45,7 +39,7 @@ const Promptcard = ({
       <div className="flex justify-between items-start gap-5">
         <div className="flex-1 flex justify-start items-center gap-3 cursor-pointer">
           <Image
-            src={post.creator.image}
+            src="/assets/images/robin.jpg"
             alt="user_image"
             width={40}
             height={40}
@@ -53,10 +47,10 @@ const Promptcard = ({
           />
           <div className="flex flex-col">
             <h3 className="font-satoshi font-semibold text-gray-900">
-              {post.creator.username}
+              Robin Muhia
             </h3>
             <p className="font-inter text-sm text-gray-500">
-              {post.creator.email}
+              muhiarobinonyancha@gmail.com
             </p>
           </div>
         </div>
@@ -74,12 +68,6 @@ const Promptcard = ({
         </div>
       </div>
       <p className="my-4 font-satoshi text-sm text-gray-700">{post.prompt}</p>
-      <p
-        className="font-inter text-sm blue_gradient cursor-pointer"
-        onClick={() => handleTagClick && handleTagClick(post.tag)}
-      >
-        #{post.tag}
-      </p>
       {
         //@ts-ignore
         session?.user!.id === post.creator._id && pathName == "/profile" && (

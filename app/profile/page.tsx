@@ -13,19 +13,15 @@ interface post {
 
 const ProfilePage = () => {
   const router = useRouter();
-  const { data: session } = useSession();
   const [posts, setPosts] = useState([]);
   useEffect(() => {
     const fetchPosts = async () => {
       //@ts-ignore
-      const response = await fetch(`/api/users/${session.user.id}/posts`);
+      const response = await fetch(`/api/users/6460ede34b545c53edb075c6/posts`);
       const data = await response.json();
       setPosts(data);
     };
-    //@ts-ignore
-    if (session?.user.id) {
-      fetchPosts();
-    }
+    fetchPosts();
   }, []);
   const handleEdit = (post: post) => {
     router.push(`/update-prompt?id=${post._id}`);
@@ -48,8 +44,8 @@ const ProfilePage = () => {
   };
   return (
     <Profile
-      name="My"
-      desc="Welcome to your personalized profile page"
+      name="Past"
+      desc="Welcome to Robin's past affirmations to you"
       data={posts}
       //@ts-ignore
       handleEdit={handleEdit}

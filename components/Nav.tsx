@@ -15,7 +15,6 @@ const Nav = () => {
     providers: Provider;
     setProviders: React.Dispatch<React.SetStateAction<Provider>>;
   }
-
   const { data: session } = useSession();
   const [toggleDropdown, setToggleDropdown] = useState<boolean>(false);
   const [providers, setProviders] = useState<Provide | null>(null);
@@ -33,13 +32,13 @@ const Nav = () => {
     <div className="flex-between w-full mb-16 pt-3">
       <Link href="/" className="flex gap-2 flex-center">
         <Image
-          src="/assets/images/logo.svg"
+          src="/assets/images/robin.svg"
           alt="Our logo"
           width={30}
           height={30}
           className="object-contain"
         />
-        <p className="logo_text"> GPT-prompter</p>
+        <p className="logo_text"> Robin-prompter</p>
       </Link>
       {/* 
         {Desktop Navigation} */}
@@ -47,11 +46,13 @@ const Nav = () => {
         {session?.user ? (
           <div className="flex gap-3 md:gap-5">
             <Link href="/create-prompt" className="black_btn">
-              Create Prompt
+              Get Affirmation
             </Link>
             <button
               type="submit"
-              onClick={() => signOut()}
+              onClick={() => {
+                signOut({ callbackUrl: "/" });
+              }}
               className="outline_btn"
             >
               Sign Out
@@ -101,20 +102,20 @@ const Nav = () => {
                   className="dropdown_link"
                   onClick={() => setToggleDropdown(false)}
                 >
-                  My Profile
+                  See past affirmations
                 </Link>
                 <Link
                   href="/create-prompt"
                   className="dropdown_link"
                   onClick={() => setToggleDropdown(false)}
                 >
-                  Create Prompt
+                  Generate Affirmations
                 </Link>
                 <button
                   type="button"
                   onClick={() => {
                     setToggleDropdown(false);
-                    signOut();
+                    signOut({ callbackUrl: "/" });
                   }}
                   className="mt-5 w-full black_btn"
                 >
