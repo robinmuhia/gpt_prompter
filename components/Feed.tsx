@@ -18,19 +18,14 @@ interface post {
 }
 interface props {
   data: Array<post>;
-  handleTagClick: () => void;
 }
 
-const PromptCardList = ({ data, handleTagClick }: props) => {
+const PromptCardList = ({ data }: props) => {
   return (
     <div className="mt-16 prompt_layout">
       {data.map((post: post) => (
         //@ts-ignore
-        <Promptcard
-          key={post._id}
-          post={post}
-          handleTagClick={handleTagClick}
-        />
+        <Promptcard key={post._id} post={post} />
       ))}
     </div>
   );
@@ -62,7 +57,7 @@ const Feed = () => {
           className="search_input peer"
         />
       </form>
-      <PromptCardList data={posts} handleTagClick={() => {}} />
+      <PromptCardList data={posts} />
     </section>
   );
 };

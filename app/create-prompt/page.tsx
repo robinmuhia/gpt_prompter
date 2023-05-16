@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Form from "components/Form";
+import { getAffirmation } from "utils/gpt";
 
 const CreatePrompt = () => {
   const router = useRouter();
@@ -16,12 +17,13 @@ const CreatePrompt = () => {
     e.preventDefault();
     setSubmitting(true);
     try {
+      const gptResponse = await getAffirmation(post.prompt);
       const response = await fetch("/api/prompt/new", {
         method: "POST",
         body: JSON.stringify({
-          prompt: post.prompt,
+          prompt: gptResponse,
           //@ts-ignore
-          userId: session.user.id,
+          userId: "6460ede34b545c53edb075c6",
         }),
       });
       if (response.ok) {
