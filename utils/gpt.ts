@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const getAffirmation = (userprompt: string) => {
-  const apiKey = "Bearer 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";
+  const apiKey = process.env.OPENAI_API_KEY;
   if (apiKey) {
     const client = axios.create({
       headers: {
