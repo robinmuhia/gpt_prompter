@@ -8,7 +8,6 @@ import { getAffirmation } from "utils/gpt";
 
 const CreatePrompt = () => {
   const router = useRouter();
-  const { data: session } = useSession();
   const [submitting, setSubmitting] = useState<boolean>(false);
   const [post, setPost] = useState({
     prompt: "",

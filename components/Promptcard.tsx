@@ -15,7 +15,6 @@ interface creator {
 interface post {
   _id: string;
   prompt: string;
-  tag: string;
   creator: creator;
 }
 
