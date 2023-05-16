@@ -11,7 +11,6 @@ const CreatePrompt = () => {
   const [submitting, setSubmitting] = useState<boolean>(false);
   const [post, setPost] = useState({
     prompt: "",
-    tag: "",
   });
   const createPrompt = async (e: React.FormEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -23,7 +22,6 @@ const CreatePrompt = () => {
           prompt: post.prompt,
           //@ts-ignore
           userId: session.user.id,
-          tag: post.tag,
         }),
       });
       if (response.ok) {

@@ -11,7 +11,6 @@ const EditPrompt = () => {
   const promptId = searchParams.get("id");
   const [post, setPost] = useState({
     prompt: "",
-    tag: "",
   });
   useEffect(() => {
     const getPromptDetails = async () => {
@@ -19,7 +18,6 @@ const EditPrompt = () => {
       const data = await response.json();
       setPost({
         prompt: data.prompt,
-        tag: data.tag,
       });
     };
     if (promptId) getPromptDetails();
@@ -34,8 +32,6 @@ const EditPrompt = () => {
         method: "PATCH",
         body: JSON.stringify({
           prompt: post.prompt,
-          //@ts-ignore
-          tag: post.tag,
         }),
       });
       if (response.ok) {

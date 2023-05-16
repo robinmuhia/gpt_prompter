@@ -20,8 +20,7 @@ export const PATCH = async (req: Request, { params }: any) => {
     if (!existingPrompt)
       return new Response("Prompt not found", { status: 404 });
     existingPrompt.prompt = prompt;
-    existingPrompt.tag = tag;
-    await existingPrompt.save();
+    await existingPrompt.save({ timestamps: true });
     return new Response(JSON.stringify(existingPrompt), { status: 200 });
   } catch (error) {
     return new Response("Failed to update prompt", { status: 500 });
