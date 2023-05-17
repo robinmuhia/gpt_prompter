@@ -17,6 +17,7 @@ const CreatePrompt = () => {
     setSubmitting(true);
     try {
       const gptResponse = await getAffirmation(post.prompt);
+      console.log(gptResponse);
       const response = await fetch("/api/prompt/new", {
         method: "POST",
         body: JSON.stringify({

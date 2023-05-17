@@ -6,6 +6,6 @@ namespace NodeJS {
     NEXTAUTH_URL: string;
     NEXTAUTH_URL_INTERNAL: string;
     NEXTAUTH_SECRET: string;
-    OPENAI_API_KEY: string;
+    NEXT_PUBLIC_OPENAI_API_KEY: string;
   }
 }
