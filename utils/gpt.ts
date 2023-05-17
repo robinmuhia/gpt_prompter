@@ -1,5 +1,4 @@
 import axios from "axios";
-import * as dotenv from "dotenv";
 
 export const getAffirmation = (userprompt: string) => {
   const apiKey = process.env.NEXT_PUBLIC_OPENAI_API_KEY;
