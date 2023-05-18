@@ -44,7 +44,7 @@ const ProfilePage = () => {
   return (
     <Profile
       name="Past"
-      desc="Welcome to Robin's past affirmations to you"
+      desc="Welcome to your past affirmations"
       data={posts}
       //@ts-ignore
       handleEdit={handleEdit}

@@ -1,23 +1,47 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Form from "components/Form";
 import { getAffirmation } from "utils/gpt";
 
 const CreatePrompt = () => {
+  const { data: session } = useSession();
   const router = useRouter();
   const [submitting, setSubmitting] = useState<boolean>(false);
   const [post, setPost] = useState({
     prompt: "",
+    user: "",
   });
+  const [verified, setVerified] = useState<boolean>(false);
+
+  useEffect(() => {
+    try {
+      //@ts-ignore
+      const currentUser = session.user;
+      if (currentUser) {
+        if (
+          currentUser?.email === "muhiarobinonyancha@gmail.com" ||
+          currentUser?.email === "alpha01ashley@gmail.com" ||
+          currentUser?.email === "naomimuhia250@gmail.com"
+        ) {
+          setVerified(true);
+          //@ts-ignore
+          setPost({ ...post, user: currentUser?.email });
+        }
+      }
+    } catch (error) {
+      setVerified(false);
+    }
+  }, []);
+
   const createPrompt = async (e: React.FormEvent<HTMLInputElement>) => {
     e.preventDefault();
     setSubmitting(true);
     try {
-      const gptResponse = await getAffirmation(post.prompt);
-      console.log(gptResponse);
+      const gptResponse = await getAffirmation(post.prompt, post.user);
+      console.log(post);
       const response = await fetch("/api/prompt/new", {
         method: "POST",
         body: JSON.stringify({
@@ -37,14 +61,21 @@ const CreatePrompt = () => {
   };
 
   return (
-    <Form
-      type="Create"
-      post={post}
-      setPost={setPost}
-      submitting={submitting}
-      //@ts-ignore
-      handleSubmit={createPrompt}
-    />
+    <>
+      {verified ? (
+        <Form
+          type="Create"
+          post={post}
+          setPost={setPost}
+          user={post.user}
+          submitting={submitting}
+          //@ts-ignore
+          handleSubmit={createPrompt}
+        />
+      ) : (
+        <h1>404 - Page Not Found</h1>
+      )}
+    </>
   );
 };
 

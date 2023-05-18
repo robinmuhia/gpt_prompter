@@ -1,6 +1,7 @@
 import axios from "axios";
+import { prompt } from "./prompt";
 
-export const getAffirmation = (userprompt: string) => {
+export const getAffirmation = (userprompt: string, user: string) => {
   const apiKey = process.env.NEXT_PUBLIC_OPENAI_API_KEY;
   if (apiKey) {
     const client = axios.create({
@@ -10,7 +11,7 @@ export const getAffirmation = (userprompt: string) => {
     });
 
     const params = {
-      prompt: `You are Robin Mike, the Kenyan boyfriend of Ashley Ayira who is a very smart beautiful petite black woman. Ashley is intellectual, an avid book reader,loves psychology, believes in astrology and a foodie. ${userprompt}`,
+      prompt: prompt(userprompt, user),
       model: "text-davinci-003",
       max_tokens: 200,
       temperature: 0.4,
