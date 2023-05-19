@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Promptcard from "./Promptcard";
+import { useSession } from "next-auth/react";
 
 interface creator {
   image: string;
@@ -22,15 +23,17 @@ interface props {
 const PromptcardList = ({ data }: props) => {
   return (
     <div className="mt-16 prompt_layout">
-      {data.map((post: post) => (
-        //@ts-ignore
-        <Promptcard key={post._id} post={post} />
-      ))}
+      {data &&
+        data.reverse().map((post: post) => (
+          //@ts-ignore
+          <Promptcard key={post._id} post={post} />
+        ))}
     </div>
   );
 };
 
 const Feed = () => {
+  const { data: session } = useSession();
   const [allPosts, setAllPosts] = useState([]);
 
   // Search states
@@ -39,10 +42,13 @@ const Feed = () => {
   const [searchedResults, setSearchedResults] = useState([]);
 
   const fetchPosts = async () => {
-    const response = await fetch("/api/prompt");
-    const data = await response.json();
-
-    setAllPosts(data);
+    //@ts-ignore
+    const id = session?.user.id;
+    if (id) {
+      const response = await fetch(`/api/users/${id}/posts`);
+      const data = await response.json();
+      setAllPosts(data);
+    }
   };
 
   useEffect(() => {

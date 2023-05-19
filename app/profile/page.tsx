@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 import Profile from "components/Profile";
 
 interface post {
@@ -12,13 +13,25 @@ interface post {
 
 const ProfilePage = () => {
   const router = useRouter();
+  const { data: session } = useSession();
   const [posts, setPosts] = useState([]);
   useEffect(() => {
     const fetchPosts = async () => {
-      //@ts-ignore
-      const response = await fetch(`/api/users/6460ede34b545c53edb075c6/posts`);
-      const data = await response.json();
-      setPosts(data);
+      if (
+        session?.user?.email === "muhiarobinonyancha@gmail.com" ||
+        session?.user?.email === "alpha01ashley@gmail.com"
+      ) {
+        const response = await fetch(
+          `/api/users/6460ede34b545c53edb075c6/posts`
+        );
+        const data = await response.json();
+        setPosts(data);
+      } else {
+        //@ts-ignore
+        const response = await fetch(`/api/users/${session?.user.id}/posts`);
+        const data = await response.json();
+        setPosts(data);
+      }
     };
     fetchPosts();
   }, []);

@@ -41,17 +41,33 @@ const CreatePrompt = () => {
     setSubmitting(true);
     try {
       const gptResponse = await getAffirmation(post.prompt, post.user);
-      console.log(post);
-      const response = await fetch("/api/prompt/new", {
-        method: "POST",
-        body: JSON.stringify({
-          prompt: gptResponse,
-          //@ts-ignore
-          userId: "6460ede34b545c53edb075c6",
-        }),
-      });
-      if (response.ok) {
-        router.push("/");
+      if (
+        post.user === "muhiarobinonyancha@gmail.com" ||
+        post.user === "alpha01ashley@gmail.com"
+      ) {
+        const response = await fetch("/api/prompt/new", {
+          method: "POST",
+          body: JSON.stringify({
+            prompt: gptResponse,
+            //@ts-ignore
+            userId: "6460ede34b545c53edb075c6",
+          }),
+        });
+        if (response.ok) {
+          router.push("/");
+        } else {
+          const response = await fetch("/api/prompt/new", {
+            method: "POST",
+            body: JSON.stringify({
+              prompt: gptResponse,
+              //@ts-ignore
+              userId: session?.user.id,
+            }),
+          });
+          if (response.ok) {
+            router.push("/");
+          }
+        }
       }
     } catch (error) {
       console.log(error);

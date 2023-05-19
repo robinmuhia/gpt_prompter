@@ -14,6 +14,9 @@ const PromptSchema = new Schema(
   { timestamps: true }
 );
 
+PromptSchema.index({ createdAt: 1 });
+PromptSchema.index({ updatedAt: 1 });
+
 const Prompt = models.Prompt || model("Prompt", PromptSchema);
 
 export default Prompt;

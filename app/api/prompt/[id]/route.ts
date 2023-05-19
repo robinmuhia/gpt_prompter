@@ -13,7 +13,7 @@ export const GET = async (req: Request, { params }: any) => {
 };
 
 export const PATCH = async (req: Request, { params }: any) => {
-  const { prompt, tag } = await req.json();
+  const { prompt } = await req.json();
   try {
     await connectToDB();
     const existingPrompt = await Prompt.findById(params.id);

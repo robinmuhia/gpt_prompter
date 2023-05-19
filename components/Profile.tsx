@@ -30,17 +30,18 @@ const Profile = ({ name, desc, data, handleEdit, handleDelete }: props) => {
       </h1>
       <p className="desc text-left">{desc}</p>
       <div className="mt-10 prompt_layout">
-        {data.map((post: post) => (
-          //@ts-ignore
-          <Promptcard
-            key={post._id}
-            post={post}
+        {data &&
+          data.reverse().map((post: post) => (
             //@ts-ignore
-            handleEdit={() => handleEdit && handleEdit(post)}
-            //@ts-ignore
-            handleDelete={() => handleDelete && handleDelete(post)}
-          />
-        ))}
+            <Promptcard
+              key={post._id}
+              post={post}
+              //@ts-ignore
+              handleEdit={() => handleEdit && handleEdit(post)}
+              //@ts-ignore
+              handleDelete={() => handleDelete && handleDelete(post)}
+            />
+          ))}
       </div>
     </section>
   );
