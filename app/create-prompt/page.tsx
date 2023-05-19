@@ -24,6 +24,7 @@ const CreatePrompt = () => {
         if (
           currentUser?.email === "muhiarobinonyancha@gmail.com" ||
           currentUser?.email === "alpha01ashley@gmail.com" ||
+          currentUser?.email === "robinonyancha123@gmail.com" ||
           currentUser?.email === "naomimuhia250@gmail.com"
         ) {
           setVerified(true);
@@ -55,18 +56,18 @@ const CreatePrompt = () => {
         });
         if (response.ok) {
           router.push("/");
-        } else {
-          const response = await fetch("/api/prompt/new", {
-            method: "POST",
-            body: JSON.stringify({
-              prompt: gptResponse,
-              //@ts-ignore
-              userId: session?.user.id,
-            }),
-          });
-          if (response.ok) {
-            router.push("/");
-          }
+        }
+      } else {
+        const response = await fetch("/api/prompt/new", {
+          method: "POST",
+          body: JSON.stringify({
+            prompt: gptResponse,
+            //@ts-ignore
+            userId: session?.user.id,
+          }),
+        });
+        if (response.ok) {
+          router.push("/");
         }
       }
     } catch (error) {
@@ -89,7 +90,10 @@ const CreatePrompt = () => {
           handleSubmit={createPrompt}
         />
       ) : (
-        <h1>404 - Page Not Found</h1>
+        <h1>
+          404 - You are not authorized to generate prompts. Contact
+          muhiarobinonyancha@gmail.com if you wish to be added!!
+        </h1>
       )}
     </>
   );
