@@ -11,6 +11,7 @@ const EditPrompt = () => {
   const promptId = searchParams.get("id");
   const [post, setPost] = useState({
     prompt: "",
+    user: "",
   });
   useEffect(() => {
     const getPromptDetails = async () => {
@@ -18,6 +19,7 @@ const EditPrompt = () => {
       const data = await response.json();
       setPost({
         prompt: data.prompt,
+        user: data.user,
       });
     };
     if (promptId) getPromptDetails();
@@ -47,6 +49,7 @@ const EditPrompt = () => {
   return (
     <Form
       type="Edit"
+      user={post.user}
       post={post}
       setPost={setPost}
       submitting={submitting}
