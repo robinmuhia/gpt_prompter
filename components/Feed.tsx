@@ -45,9 +45,20 @@ const Feed = () => {
     //@ts-ignore
     const id = session?.user.id;
     if (id) {
-      const response = await fetch(`/api/users/${id}/posts`);
-      const data = await response.json();
-      setAllPosts(data);
+      if (
+        session?.user?.email === "muhiarobinonyancha@gmail.com" ||
+        session?.user?.email === "alpha01ashley@gmail.com"
+      ) {
+        const response = await fetch(
+          `/api/users/6460ede34b545c53edb075c6/posts`
+        );
+        const data = await response.json();
+        setAllPosts(data);
+      } else {
+        const response = await fetch(`/api/users/${id}/posts`);
+        const data = await response.json();
+        setAllPosts(data);
+      }
     }
   };
 
