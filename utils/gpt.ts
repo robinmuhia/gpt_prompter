@@ -14,7 +14,7 @@ export const getAffirmation = (userprompt: string, user: string) => {
       prompt: prompt(userprompt, user),
       model: "text-davinci-003",
       max_tokens: 200,
-      temperature: 0.4,
+      temperature: 0.7,
     };
 
     return client
