@@ -48,6 +48,9 @@ const Nav = () => {
             <Link href="/create-prompt" className="black_btn">
               Get Affirmation
             </Link>
+            <Link href="/chat-bot" className="black_btn">
+              Chat with your Robin bot
+            </Link>
             <button
               type="submit"
               onClick={() => {
@@ -110,6 +113,13 @@ const Nav = () => {
                   onClick={() => setToggleDropdown(false)}
                 >
                   Generate Affirmations
+                </Link>
+                <Link
+                  href="/chat-bot"
+                  className="dropdown_link"
+                  onClick={() => setToggleDropdown(false)}
+                >
+                  Chat with your Robin bot
                 </Link>
                 <button
                   type="button"
