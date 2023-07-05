@@ -1,6 +1,6 @@
 # Ayira's Affirmations
 
-This is a 'Words of affirmation' web application that uses the OpenAI API to give my girlfriend words of affirmation. I created this as a birthday gift for her as one of her love languages is words of affirmation. It is deployed on vercel and it is serverless hence no backend is required.
+This is a 'Words of affirmation' web application that uses the OpenAI API to give words of affirmation. 
 
 # Front-end infrastructure
 
