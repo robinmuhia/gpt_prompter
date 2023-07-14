@@ -1,8 +1,10 @@
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const Ask = ({ generateChat }: any) => {
   const [newQuestion, setNewQuestion] = useState<string>("");
   const [success, setSuccess] = useState<boolean>(false);
+  const router = useRouter();
 
   const handleClick = async () => {
     try {
@@ -19,6 +21,8 @@ const Ask = ({ generateChat }: any) => {
         const textarea = document.getElementById("chat-bot");
         //@ts-ignore
         textarea.value = "";
+      } else {
+        router.push("/error");
       }
     } catch (err) {
       console.log(err);
