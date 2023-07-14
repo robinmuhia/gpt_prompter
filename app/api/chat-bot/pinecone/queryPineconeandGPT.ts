@@ -21,8 +21,6 @@ export const queryPineconeVectorStoreAndQueryLLM = async (
       includeValues: true,
     },
   });
-  console.log(`Found ${queryResponse.matches.length} matches...`);
-  console.log(`Asking question: ${question}...`);
   if (queryResponse.matches.length) {
     const llm = new OpenAI({
       openAIApiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
@@ -35,8 +33,7 @@ export const queryPineconeVectorStoreAndQueryLLM = async (
       input_documents: [new Document({ pageContent: concatenatedPageContent })],
       question: question,
     });
-    console.log(`Answer: ${result.text}`);
-    return result.text;
+    return Promise.resolve(result);
   } else {
     console.log("Since there are no matches, GPT-3 will not be queried.");
   }

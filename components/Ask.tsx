@@ -12,10 +12,10 @@ const Ask = ({ generateChat }: any) => {
           question: newQuestion,
         }),
       });
-      console.log(response);
-      if (response) {
+      if (response.status === 200) {
         setSuccess(true);
-        generateChat(newQuestion, setNewQuestion, response, success);
+        const chat = await response.json();
+        generateChat(newQuestion, setNewQuestion, chat.text, success);
         const textarea = document.getElementById("chat-bot");
         //@ts-ignore
         textarea.value = "";
