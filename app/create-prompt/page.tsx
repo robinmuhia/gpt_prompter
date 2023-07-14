@@ -22,10 +22,10 @@ const CreatePrompt = () => {
       const currentUser = session.user;
       if (currentUser) {
         if (
-          currentUser?.email === "muhiarobinonyancha@gmail.com" ||
-          currentUser?.email === "alpha01ashley@gmail.com" ||
-          currentUser?.email === "robinonyancha123@gmail.com" ||
-          currentUser?.email === "naomimuhia250@gmail.com"
+          currentUser?.email === process.env.NEXT_PUBLIC_ROBIN_EMAIL ||
+          currentUser?.email === process.env.NEXT_PUBLIC_ROBIN2_EMAIL ||
+          currentUser?.email === process.env.NEXT_PUBLIC_AYIRA_EMAIL ||
+          currentUser?.email === process.env.NEXT_PUBLIC_NAOMI_EMAIL
         ) {
           setVerified(true);
           //@ts-ignore
@@ -43,8 +43,8 @@ const CreatePrompt = () => {
     try {
       const gptResponse = await getAffirmation(post.prompt, post.user);
       if (
-        post.user === "muhiarobinonyancha@gmail.com" ||
-        post.user === "alpha01ashley@gmail.com"
+        post.user === process.env.NEXT_PUBLIC_ROBIN_EMAIL ||
+        post.user === process.env.NEXT_PUBLIC_AYIRA_EMAIL
       ) {
         const response = await fetch("/api/prompt/new", {
           method: "POST",

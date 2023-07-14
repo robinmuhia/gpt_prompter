@@ -6,7 +6,7 @@ export const getAffirmation = (userprompt: string, user: string) => {
   if (apiKey) {
     const client = axios.create({
       headers: {
-        Authorization: apiKey,
+        Authorization: "Bearer " + apiKey,
       },
     });
 

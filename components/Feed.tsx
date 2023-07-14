@@ -46,8 +46,8 @@ const Feed = () => {
     const id = session?.user.id;
     if (id) {
       if (
-        session?.user?.email === "muhiarobinonyancha@gmail.com" ||
-        session?.user?.email === "alpha01ashley@gmail.com"
+        session?.user?.email === process.env.NEXT_PUBLIC_ROBIN_EMAIL ||
+        session?.user?.email === process.env.NEXT_PUBLIC_AYIRA_EMAIL
       ) {
         const response = await fetch(
           `/api/users/6460ede34b545c53edb075c6/posts`

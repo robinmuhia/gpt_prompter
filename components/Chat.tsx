@@ -1,14 +1,19 @@
+"use client";
+
 import Ask from "./Ask";
 import Answer from "./Answer";
-import { useState } from "react";
+import { Dispatch, useState, SetStateAction } from "react";
 
-const Chat = ({ generateStory }: any) => {
+const Chat = () => {
   const [storedValues, setStoredValues] = useState([]);
 
-  const generateResponse = async (newQuestion: string, setNewQuestion: any) => {
-    const response = generateStory(newQuestion);
-
-    if (response) {
+  const generateChat = async (
+    newQuestion: string,
+    setNewQuestion: Dispatch<SetStateAction<string>>,
+    response: Promise<string>,
+    success: boolean
+  ) => {
+    if (success) {
       setStoredValues([
         //@ts-ignore
         {
@@ -36,7 +41,7 @@ const Chat = ({ generateStory }: any) => {
         )}
       </div>
 
-      <Ask generateResponse={generateResponse} />
+      <Ask generateChat={generateChat} />
 
       {storedValues.length > 0 && <Answer storedValues={storedValues} />}
     </div>
