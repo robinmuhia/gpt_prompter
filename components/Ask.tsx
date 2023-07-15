@@ -14,7 +14,7 @@ const Ask = ({ generateChat }: any) => {
           question: newQuestion,
         }),
       });
-      if (response.status === 200) {
+      if (response.ok) {
         setSuccess(true);
         const chat = await response.json();
         generateChat(newQuestion, setNewQuestion, chat.text, success);

@@ -2,7 +2,6 @@ import { PineconeClient } from "@pinecone-database/pinecone";
 import { DirectoryLoader } from "langchain/document_loaders/fs/directory";
 import { TextLoader } from "langchain/document_loaders/fs/text";
 import { createPineconeIndex } from "./createPinecone";
-import { updatePinecone } from "./updatePinecone";
 import { queryPineconeVectorStoreAndQueryLLM } from "./queryPineconeandGPT";
 
 export const generateResponse = async (question: string) => {
@@ -18,7 +17,6 @@ export const generateResponse = async (question: string) => {
     environment: process.env.NEXT_PUBLIC_PINECONE_ENVIRONMENT,
   });
   await createPineconeIndex(client, indexName, vectorDimension, docs);
-  await updatePinecone(client, indexName, docs);
   const chat = await queryPineconeVectorStoreAndQueryLLM(
     client,
     indexName,
