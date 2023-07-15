@@ -21,11 +21,10 @@ const Ask = ({ generateChat }: any) => {
         const textarea = document.getElementById("chat-bot");
         //@ts-ignore
         textarea.value = "";
-      } else {
-        router.push("/error");
       }
     } catch (err) {
       console.log(err);
+      router.push("/error");
     }
   };
   return (
