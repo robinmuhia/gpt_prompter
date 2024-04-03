@@ -17,9 +17,9 @@ The application leverages:
 - MongoDB for data storage
 - Pinecone database for storing vectors from a TXT file
 
-The template and user interface were forked from [javascript mastert](https://github.com/adrianhajdin/project_next_14_ai_prompt_sharing).
+The template and user interface were forked from [javascript mastery](https://github.com/adrianhajdin/project_next_14_ai_prompt_sharing).
 
-You can watch along to get the appropriate envs to use for google and url.
+You can watch along to get the appropriate envs to use for google and the urls.
 
 You are a software engineer so do research to get pinecone and OpenAi envs
 
