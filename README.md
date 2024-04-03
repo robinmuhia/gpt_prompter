@@ -1,6 +1,6 @@
-# Ayira's Affirmations - README
+# Ayira's Affirmations
 
-Welcome to Ayira's Affirmations, a 'Words of Affirmation' web application designed to provide positive affirmations using the OpenAI API. This README will guide you through setting up the application locally and deploying it.
+Welcome to Ayira's Affirmations, a 'Words of Affirmation' web application designed to provide positive affirmations using the OpenAI API. This README will guide you through setting up the application locally.
 
 ## Front-end Infrastructure
 
