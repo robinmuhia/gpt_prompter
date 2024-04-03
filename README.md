@@ -4,16 +4,33 @@ Welcome to Ayira's Affirmations, a 'Words of Affirmation' web application design
 
 ## Front-end Infrastructure
 
-Ayira's Affirmations is built using TypeScript, Tailwind CSS, and Next.js. The application leverages Express.js for serverless functionality, enabling integration with Next-auth for authentication and connection with the OpenAI API. Data is stored in MongoDB, and the template and user interface were forked from @javascript mastery. Additionally, the application utilizes a Pinecone database to store vectors from a TXT file for querying information.
+Ayira's Affirmations is built using:
+
+- TypeScript
+- Tailwind CSS
+- Next.js
+
+The application leverages:
+
+- Express.js for serverless functionality
+- Next-auth for authentication
+- MongoDB for data storage
+- Pinecone database for storing vectors from a TXT file
+
+The template and user interface were forked from [javascript mastert](https://github.com/adrianhajdin/project_next_14_ai_prompt_sharing).
+
+You can watch along to get the appropriate envs to use for google and url.
+
+You are a software engineer so do research to get pinecone and OpenAi envs
 
 ## Environment Variables
 
 To run Ayira's Affirmations locally or deploy it, you need to set up the following environment variables:
 
 ```bash
-GOOGLE_ID=
-GOOGLE_CLIENT_SECRET=
-MONGODB_URI=
+NEXT_PUBLIC_GOOGLE_ID=
+NEXT_PUBLIC_GOOGLE_CLIENT_SECRET=
+NEXT_PUBLIC_MONGODB_URI=
 NEXTAUTH_URL=
 NEXTAUTH_URL_INTERNAL=
 NEXTAUTH_SECRET=
